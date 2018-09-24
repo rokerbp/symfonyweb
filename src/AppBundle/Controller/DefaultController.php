@@ -13,6 +13,8 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        //Capturar el repositorio de la tabla contra la BD
+        $repository = $this->getDoctrine()->getRepository(Servicio::class);
         // replace this example code with whatever you need
         return $this->render('frontal/index.html.twig');
     }
