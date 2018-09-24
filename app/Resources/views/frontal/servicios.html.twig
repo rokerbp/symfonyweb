@@ -1,0 +1,116 @@
+{# Plantilla de la aplicación #}
+{% extends 'base.html.twig' %}
+{# Titulo #}
+{% block titulo %}
+    Servicios
+{% endblock %}
+{# Contenido #}
+{% block contenido %}
+<!-- Page Content -->
+<div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">Nuestros
+    <small>Servicios</small>
+    </h1>
+
+<!-- Servicio Popayan -->
+{% if sitio=='pop' or sitio=='todos'%}
+
+<div class="row">
+<!-- Map Column -->
+<div class="col-lg-8 mb-4">
+    <!-- Embedded Google Map -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15944.71098408522!2d-76.60069851114503!3d2.4478175810008618!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8d3ad6fd0bf92cea!2sUrbanizaci%C3%B3n+Pomona!5e0!3m2!1ses-419!2sco!4v1537570693541" width="550" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+<!-- Contact Details Column -->
+<div class="col-lg-4 mb-4">
+    <h3>Contact Details</h3>
+    <p>
+    3481 Pomona
+    <br>Popayan, CO 91000
+    <br>
+    </p>
+    <p>
+    <abbr title="Phone">P</abbr>: (123) 456-7890
+    </p>
+    <p>
+    <abbr title="Email">E</abbr>:
+    <a href="mailto:name@example.com">name@example.com
+    </a>
+    </p>
+    <p>
+    <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM
+    </p>
+</div>
+</div>
+{% endif %}
+<!-- MAPA -->
+
+<!-- Servicio Cali -->
+{% if sitio=='cal' or sitio=='todos'%}
+
+<div class="row">
+<!-- Map Column -->
+<div class="col-lg-8 mb-4">
+    <!-- Embedded Google Map -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.7243018489125!2d-76.53522478538979!3d3.417209447512693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a6bbb78c308d%3A0xed40877f9106c442!2sPasoancho%2C+Cali%2C+Valle+del+Cauca!5e0!3m2!1ses-419!2sco!4v1537570740510" width="550" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+<!-- Contact Details Column -->
+<div class="col-lg-4 mb-4">
+    <h3>Contact Details</h3>
+    <p>
+    3481 Paso Ancho
+    <br>Cali, CO 90210
+    <br>
+    </p>
+    <p>
+    <abbr title="Phone">P</abbr>: (123) 456-7890
+    </p>
+    <p>
+    <abbr title="Email">E</abbr>:
+    <a href="mailto:name@example.com">name@example.com
+    </a>
+    </p>
+    <p>
+    <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM
+    </p>
+</div>
+</div>
+{% endif %}
+<!-- MAPA -->
+
+<!-- Servicio Bogota -->
+{% if sitio=='bog' or sitio=='todos'%}
+
+<div class="row">
+<!-- Map Column -->
+<div class="col-lg-8 mb-4">
+    <!-- Embedded Google Map -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7953.326238843921!2d-74.11799657643189!3d4.65403038647709!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9b8e3f0b6cd7%3A0x2751387a49099904!2sCiudad+Salitre%2C+Bogot%C3%A1!5e0!3m2!1ses-419!2sco!4v1537570799735" width="550" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+<!-- Contact Details Column -->
+<div class="col-lg-4 mb-4">
+    <h3>Contact Details</h3>
+    <p>
+    3481 Ciudad Salitre
+    <br>Bogota, CO 90210
+    <br>
+    </p>
+    <p>
+    <abbr title="Phone">P</abbr>: (123) 456-7890
+    </p>
+    <p>
+    <abbr title="Email">E</abbr>:
+    <a href="mailto:name@example.com">name@example.com
+    </a>
+    </p>
+    <p>
+    <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM
+    </p>
+</div>
+</div>
+{% endif %}
+<!-- MAPA -->
+
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{# Plantilla de la aplicación #}
+{% extends 'base.html.twig' %}
+{# Titulo #}
+{% block titulo %}
+  Nosotros
+{% endblock %}
+{# CONTENIDO #}
+{% block contenido %}
+<!-- Page Content -->
+<div class="container">
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">Quienes
+    <small>Somos</small>
+    </h1>
+
+    <!-- Image Header -->
+      <img class="img-fluid rounded mb-4" src={{asset('img/head.jpg')}} alt="">
+
+    <!-- Marketing Icons Section -->
+    <h2>Nuestro Equipo</h2>
+      <div class="row">
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 text-center">
+            <img class="card-img-top" src={{asset('img/member1.jpg')}} alt="">
+            <div class="card-body">
+            <h4 class="card-title">Sofía Guerra</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Position</h6>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#">name@example.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 text-center">
+            <img class="card-img-top" src={{asset('img/member1.jpg')}} alt="">
+            <div class="card-body">
+            <h4 class="card-title">Sofía Guerra</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Position</h6>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#">name@example.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+          <div class="card h-100 text-center">
+           <img class="card-img-top" src={{asset('img/member1.jpg')}} alt="">
+            <div class="card-body">
+            <h4 class="card-title">Sofía Guerra</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Position</h6>
+              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            </div>
+            <div class="card-footer">
+              <a href="#">name@example.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- FIN Tarjetas -->
+
+</div>
+{% endblock %}
