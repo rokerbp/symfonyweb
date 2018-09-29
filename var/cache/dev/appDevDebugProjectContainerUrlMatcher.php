@@ -127,9 +127,22 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::nosotrosAction',  '_route' => 'nosotros',);
         }
 
-        // servicios
-        if (0 === strpos($pathinfo, '/servicios') && preg_match('#^/servicios(?:/(?P<sitio>[^/]++))?$#sD', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'servicios')), array (  'sitio' => 'todos',  '_controller' => 'AppBundle\\Controller\\DefaultController::serviciosAction',));
+        if (0 === strpos($pathinfo, '/servicio')) {
+            // servicios
+            if (0 === strpos($pathinfo, '/servicios') && preg_match('#^/servicios(?:/(?P<sitio>[^/]++))?$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'servicios')), array (  'sitio' => 'todos',  '_controller' => 'AppBundle\\Controller\\DefaultController::serviciosAction',));
+            }
+
+            // servicio
+            if (preg_match('#^/servicio(?:/(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'servicio')), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::servicioAction',));
+            }
+
+        }
+
+        // nuevoServicio
+        if ('/gestionServicios/nuevoServicio' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\GestionServiciosController::nuevoServicioAction',  '_route' => 'nuevoServicio',);
         }
 
         if ('/' === $pathinfo && !$allow) {

@@ -1,0 +1,12 @@
+{# Plantilla de la aplicación #}
+{% extends 'base.html.twig' %}
+{# Titulo #}
+{% block titulo %}
+  Nuevo Servicio
+{% endblock %}
+{# Contenido #}
+{% block contenido %}
+    {{ form_start(form)}}
+    {{ form_widget(form)}}
+    {{ form_end(form)}}
+{% endblock %}

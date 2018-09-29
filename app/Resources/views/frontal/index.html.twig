@@ -53,39 +53,19 @@
     <div class="container">
       <h1 class="my-4">Servicios</h2>
       <div class="row">
+      {% for servicio in servicios %}
         <div class="col-lg-4 col-sm-6 portfolio-item">
           <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="{{asset('img/slide1.jpg')}}" alt=""></a>
+            <a href="{{ path('servicio',{'id':servicio.id}) }}"><img class="card-img-top" src="{{asset('img/slide1.jpg')}}" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="#">Sitios Web</a>
+                <a href="{{ path('servicio',{'id':servicio.id}) }}">{{ servicio.nombre }}</a>
               </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+              <p class="card-text">{{ servicio.descripcion }}</p>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="{{asset('img/slide2.jpg')}}" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Social Networking</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="{{asset('img/slide3.jpg')}}" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Web para SmartPhones</a>
-              </h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-            </div>
-          </div>
-        </div>
+      {% endfor %}
       </div>
     </div>
     <!-- /.row -->
