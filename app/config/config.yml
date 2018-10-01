@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    servicioImg_directory: '%kernel.project_dir%/web/img/servicioImg'
 
 framework:
     #esi: ~
@@ -35,6 +36,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        servicioImg: '/img/servicioImg/'
 
 # Doctrine Configuration
 doctrine:
@@ -72,3 +75,8 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+ivory_ck_editor:
+    configs:
+        my_config:
+            toolbar: basic

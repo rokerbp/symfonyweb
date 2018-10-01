@@ -60,6 +60,8 @@ class ComposerStaticInit9f017761760129ca9691389c68198d27
         ),
         'I' => 
         array (
+            'Ivory\\JsonBuilder\\' => 18,
+            'Ivory\\CKEditorBundle\\' => 21,
             'Incenteev\\ParameterHandler\\' => 27,
         ),
         'F' => 
@@ -189,6 +191,14 @@ class ComposerStaticInit9f017761760129ca9691389c68198d27
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Ivory\\JsonBuilder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/egeloen/json-builder/src',
+        ),
+        'Ivory\\CKEditorBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/egeloen/ckeditor-bundle',
         ),
         'Incenteev\\ParameterHandler\\' => 
         array (

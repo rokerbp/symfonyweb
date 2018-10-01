@@ -16,6 +16,7 @@
       <parameter key="SwiftmailerBundle">Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle</parameter>
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
+      <parameter key="IvoryCKEditorBundle">Ivory\CKEditorBundle\IvoryCKEditorBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
@@ -58,6 +59,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">C:\xampp2\htdocs\symphony34\symfonyweb\vendor\sensio\framework-extra-bundle</parameter>
         <parameter key="namespace">Sensio\Bundle\FrameworkExtraBundle</parameter>
+      </parameter>
+      <parameter key="IvoryCKEditorBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">C:\xampp2\htdocs\symphony34\symfonyweb\vendor\egeloen\ckeditor-bundle</parameter>
+        <parameter key="namespace">Ivory\CKEditorBundle</parameter>
       </parameter>
       <parameter key="AppBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -105,6 +111,7 @@
     <parameter key="mailer_password">null</parameter>
     <parameter key="secret">5f9351698b61e5dcc1c18291ab375fb5092a69d5</parameter>
     <parameter key="locale">en</parameter>
+    <parameter key="servicioImg_directory">C:\xampp2\htdocs\symphony34\symfonyweb/web/img/servicioImg</parameter>
     <parameter key="fragment.renderer.hinclude.global_template"></parameter>
     <parameter key="fragment.path">/_fragment</parameter>
     <parameter key="kernel.secret">5f9351698b61e5dcc1c18291ab375fb5092a69d5</parameter>
@@ -159,6 +166,7 @@
     <parameter key="security.authentication.hide_user_not_found">true</parameter>
     <parameter key="twig.exception_listener.controller">twig.controller.exception:showAction</parameter>
     <parameter key="twig.form.resources" type="collection">
+      <parameter>@IvoryCKEditor/Form/ckeditor_widget.html.twig</parameter>
       <parameter>form_div_layout.html.twig</parameter>
     </parameter>
     <parameter key="twig.default_path">C:\xampp2\htdocs\symphony34\symfonyweb/templates</parameter>
@@ -443,6 +451,7 @@
       <parameter key="console.command.doctrine_bundle_doctrinebundle_command_proxy_runsqldoctrinecommand">doctrine.query_sql_command</parameter>
       <parameter key="console.command.doctrine_bundle_doctrinebundle_command_proxy_updateschemadoctrinecommand">doctrine.schema_update_command</parameter>
       <parameter key="console.command.doctrine_bundle_doctrinebundle_command_proxy_validateschemacommand">doctrine.schema_validate_command</parameter>
+      <parameter key="console.command.ivory_ckeditorbundle_command_ckeditorinstallercommand">console.command.ivory_ckeditorbundle_command_ckeditorinstallercommand</parameter>
       <parameter key="console.command.sensiolabs_security_command_securitycheckercommand">sensio_distribution.security_checker.command</parameter>
       <parameter key="console.command.symfony_bundle_webserverbundle_command_serverruncommand">web_server.command.server_run</parameter>
       <parameter key="console.command.symfony_bundle_webserverbundle_command_serverstartcommand">web_server.command.server_start</parameter>
@@ -756,12 +765,14 @@
         <argument>Symfony\Component\Form\Extension\Core\Type</argument>
         <argument>AppBundle\Form</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
+        <argument>Ivory\CKEditorBundle\Form\Type</argument>
       </argument>
       <argument type="collection">
         <argument>AppBundle\Form\ServicioType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type\EntityType</argument>
+        <argument>Ivory\CKEditorBundle\Form\Type\CKEditorType</argument>
       </argument>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\HttpFoundation\Type\FormTypeHttpFoundationExtension</argument>
@@ -971,7 +982,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.onfmpjc"/>
+      <argument type="service" id="service_locator._8aaknz"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.http_foundation"/>
@@ -2591,6 +2602,9 @@
         <argument type="service" id="doctrine.twig.doctrine_extension"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="ivory_ck_editor.twig_extension"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="twig.extension.webprofiler"/>
       </call>
       <call method="addGlobal">
@@ -2599,6 +2613,10 @@
       </call>
       <call method="addRuntimeLoader">
         <argument type="service" id="twig.runtime_loader"/>
+      </call>
+      <call method="addGlobal">
+        <argument>servicioImg</argument>
+        <argument>/img/servicioImg/</argument>
       </call>
       <configurator service="twig.configurator.environment" method="configure"/>
     </service>
@@ -2681,6 +2699,14 @@
       <call method="addPath">
         <argument>C:\xampp2\htdocs\symphony34\symfonyweb\vendor\doctrine\doctrine-bundle/Resources/views</argument>
         <argument>!Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp2\htdocs\symphony34\symfonyweb\vendor\egeloen\ckeditor-bundle/Resources/views</argument>
+        <argument>IvoryCKEditor</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp2\htdocs\symphony34\symfonyweb\vendor\egeloen\ckeditor-bundle/Resources/views</argument>
+        <argument>!IvoryCKEditor</argument>
       </call>
       <call method="addPath">
         <argument>C:\xampp2\htdocs\symphony34\symfonyweb\vendor\symfony\symfony\src\Symfony\Bundle\DebugBundle/Resources/views</argument>
@@ -3424,6 +3450,45 @@
     <service id="framework_extra_bundle.argument_name_convertor" class="Sensio\Bundle\FrameworkExtraBundle\Request\ArgumentNameConverter" public="false">
       <argument type="service" id="argument_metadata_factory"/>
     </service>
+    <service id="ivory_ck_editor.command.installer" class="Ivory\CKEditorBundle\Command\CKEditorInstallerCommand">
+      <tag name="console.command"/>
+      <argument type="service" id="ivory_ck_editor.installer"/>
+    </service>
+    <service id="ivory_ck_editor.form.type" class="Ivory\CKEditorBundle\Form\Type\CKEditorType">
+      <tag name="form.type"/>
+      <argument type="service" id="ivory_ck_editor.config_manager"/>
+      <argument type="service" id="ivory_ck_editor.plugin_manager"/>
+      <argument type="service" id="ivory_ck_editor.styles_set_manager"/>
+      <argument type="service" id="ivory_ck_editor.template_manager"/>
+      <argument type="service" id="ivory_ck_editor.toolbar_manager"/>
+    </service>
+    <service id="ivory_ck_editor.config_manager" class="Ivory\CKEditorBundle\Model\ConfigManager">
+      <call method="setConfigs">
+        <argument type="collection">
+          <argument key="my_config" type="collection">
+            <argument key="toolbar">basic</argument>
+          </argument>
+        </argument>
+      </call>
+      <call method="setDefaultConfig">
+        <argument>my_config</argument>
+      </call>
+    </service>
+    <service id="ivory_ck_editor.plugin_manager" class="Ivory\CKEditorBundle\Model\PluginManager"/>
+    <service id="ivory_ck_editor.styles_set_manager" class="Ivory\CKEditorBundle\Model\StylesSetManager"/>
+    <service id="ivory_ck_editor.template_manager" class="Ivory\CKEditorBundle\Model\TemplateManager"/>
+    <service id="ivory_ck_editor.toolbar_manager" class="Ivory\CKEditorBundle\Model\ToolbarManager"/>
+    <service id="ivory_ck_editor.installer" class="Ivory\CKEditorBundle\Installer\CKEditorInstaller"/>
+    <service id="ivory_ck_editor.renderer" class="Ivory\CKEditorBundle\Renderer\CKEditorRenderer">
+      <argument type="service" id="service_container"/>
+    </service>
+    <service id="ivory_ck_editor.renderer.json_builder" class="Ivory\JsonBuilder\JsonBuilder">
+      <argument type="service" id="property_accessor" on-invalid="null"/>
+    </service>
+    <service id="ivory_ck_editor.twig_extension" class="Ivory\CKEditorBundle\Twig\CKEditorExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="ivory_ck_editor.renderer"/>
+    </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="var_dumper.cloner"/>
@@ -3582,10 +3647,11 @@
         <argument key="inline" type="service" id="fragment.renderer.inline"/>
       </argument>
     </service>
-    <service id="service_locator.onfmpjc" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator._8aaknz" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="AppBundle\Form\ServicioType" type="service" id="AppBundle\Form\ServicioType"/>
+        <argument key="Ivory\CKEditorBundle\Form\Type\CKEditorType" type="service" id="ivory_ck_editor.form.type"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service" id="form.type.form"/>
@@ -4033,5 +4099,6 @@
     <service id="console.command.doctrine_bundle_doctrinecachebundle_command_deletecommand" alias="doctrine_cache.delete_command" public="true"/>
     <service id="console.command.doctrine_bundle_doctrinecachebundle_command_flushcommand" alias="doctrine_cache.flush_command" public="true"/>
     <service id="console.command.doctrine_bundle_doctrinecachebundle_command_statscommand" alias="doctrine_cache.stats_command" public="true"/>
+    <service id="console.command.ivory_ckeditorbundle_command_ckeditorinstallercommand" alias="ivory_ck_editor.command.installer" public="true"/>
   </services>
 </container>

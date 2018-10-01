@@ -7,7 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 class ServicioType extends AbstractType
 {
@@ -15,8 +17,10 @@ class ServicioType extends AbstractType
     {
         $builder
             ->add('nombre', TextType::class)
-            ->add('descripcion', TextareaType::class)
+            ->add('descripcion', CKEditorType::class)
             ->add('caracteristicas', TextareaType::class)
+            ->add('foto', FileType::class, array('attr'=>array('onChange'=>'onChange(event)')))
+            ->add('top')
             ->add('salvar', SubmitType::class, array('label' => 'Nuevo Servicio'))
         ;
     }
