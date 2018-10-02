@@ -134,9 +134,15 @@ class __TwigTemplate_a282f69978f153d801434cf525c20fa9fd0359c3551dfb1910832386d8e
             <a href=\"";
             // line 59
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("servicio", array("id" => $this->getAttribute($context["servicio"], "id", array()))), "html", null, true);
-            echo "\"><img class=\"card-img-top\" src=\"";
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl((($context["servicioImg"] ?? $this->getContext($context, "servicioImg")) . $this->getAttribute($context["servicio"], "foto", array()))), "html", null, true);
-            echo "\" alt=\"\"></a>
+            echo "\"><img class=\"card-img-top\" src=";
+            if ((twig_length_filter($this->env, $this->getAttribute($context["servicio"], "foto", array())) > 0)) {
+                echo "\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl((($context["servicioImg"] ?? $this->getContext($context, "servicioImg")) . $this->getAttribute($context["servicio"], "foto", array()))), "html", null, true);
+                echo "\" ";
+            } else {
+                echo "\"http://placehold.it/700x400\" ";
+            }
+            echo " alt=\"\"></a>
             <div class=\"card-body\">
               <h4 class=\"card-title\">
                 <a href=\"";
@@ -183,7 +189,7 @@ class __TwigTemplate_a282f69978f153d801434cf525c20fa9fd0359c3551dfb1910832386d8e
 
     public function getDebugInfo()
     {
-        return array (  162 => 69,  151 => 64,  144 => 62,  136 => 59,  132 => 57,  128 => 56,  102 => 33,  92 => 26,  82 => 19,  70 => 9,  61 => 8,  50 => 5,  41 => 4,  11 => 2,);
+        return array (  168 => 69,  157 => 64,  150 => 62,  136 => 59,  132 => 57,  128 => 56,  102 => 33,  92 => 26,  82 => 19,  70 => 9,  61 => 8,  50 => 5,  41 => 4,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -254,7 +260,7 @@ class __TwigTemplate_a282f69978f153d801434cf525c20fa9fd0359c3551dfb1910832386d8e
       {% for servicio in servicios %}
         <div class=\"col-lg-4 col-sm-6 portfolio-item\">
           <div class=\"card h-100\">
-            <a href=\"{{ path('servicio',{'id':servicio.id}) }}\"><img class=\"card-img-top\" src=\"{{asset(servicioImg~servicio.foto)}}\" alt=\"\"></a>
+            <a href=\"{{ path('servicio',{'id':servicio.id}) }}\"><img class=\"card-img-top\" src={% if servicio.foto|length > 0 %}\"{{asset(servicioImg~servicio.foto)}}\" {% else %}\"http://placehold.it/700x400\" {% endif %} alt=\"\"></a>
             <div class=\"card-body\">
               <h4 class=\"card-title\">
                 <a href=\"{{ path('servicio',{'id':servicio.id}) }}\">{{ servicio.nombre }}</a>

@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Servicio;
+use AppBundle\Entity\Categoria;
 
 class DefaultController extends Controller
 {
@@ -49,6 +50,20 @@ class DefaultController extends Controller
             $servicioRepository = $this->getDoctrine()->getRepository(Servicio::class);
             $servicio = $servicioRepository->find($id);
             return $this->render('frontal/servicio.html.twig',array("servicio"=>$servicio));
+        }else{
+            return $this->redirectToRoute('homepage');
+        }
+    }
+
+    /**
+     * @Route("/categoria/{id}", name="categoria")
+     */
+    public function catAction(Request $request,$id=null)
+    {
+        if($id!=null){
+            $categoriaRepository = $this->getDoctrine()->getRepository(Categoria::class);
+            $categoria = $categoriaRepository->find($id);
+            return $this->render('frontal/categoria.html.twig',array("categoria"=>$categoria));
         }else{
             return $this->redirectToRoute('homepage');
         }

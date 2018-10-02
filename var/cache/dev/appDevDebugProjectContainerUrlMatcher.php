@@ -140,9 +140,19 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // categoria
+        if (0 === strpos($pathinfo, '/categoria') && preg_match('#^/categoria(?:/(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'categoria')), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::catAction',));
+        }
+
         // nuevoServicio
         if ('/gestionServicios/nuevoServicio' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\GestionServiciosController::nuevoServicioAction',  '_route' => 'nuevoServicio',);
+        }
+
+        // nuevaCategoria
+        if ('/gestionServicios/nuevaCategoria' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\GestionServiciosController::nuevaCategoriaAction',  '_route' => 'nuevaCategoria',);
         }
 
         if ('/' === $pathinfo && !$allow) {

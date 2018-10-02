@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\ServicioType;
+use AppBundle\Form\CategoriaType;
 use AppBundle\Entity\Servicio;
+use AppBundle\Entity\Categoria;
 
 /**
      * @Route("/gestionServicios")
@@ -47,6 +49,39 @@ class GestionServiciosController extends Controller
         }
 
         return $this->render('gestionServicios/nuevoServicio.html.twig',array('form'=>$form->createView()));
+    }
+
+    /**
+     * @Route("/nuevaCategoria", name="nuevaCategoria")
+     */
+    public function nuevaCategoriaAction(Request $request)
+    {
+        $categoria = new Categoria();
+        //Construyendo el formulario
+        $form = $this->createForm(CategoriaType::class, $categoria);
+
+        //Reogemos la informacion
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            //Rellenar el Entity servicio
+            $gategoria = $form->getData();
+            $fotoFile=$categoria->getFoto();
+            $fileName = $this->generateUniqueFileName().'.'.$fotoFile->guessExtension();
+            // Move the file to the directory where brochures are storeds
+                $fotoFile->move(
+                    $this->getParameter('servicioImg_directory'),
+                    $fileName
+                );
+            $categoria->setFoto("$fileName");
+
+            //Almacenar nuevo categoria
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($categoria);
+            $em->flush();
+            return $this->redirectToRoute('categoria',array('id' => $categoria->getId()));
+        }
+
+        return $this->render('gestionServicios/nuevaCategoria.html.twig',array('form'=>$form->createView()));
     }
 
     /**

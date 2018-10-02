@@ -23,6 +23,6 @@ function onChange(event){
     if (validarTipos(file))
     {
         var servicioMiniatura=document.getElementById('servicioThumb');
-        servicioThumb.src=window.URL.createObjectURL(files);
+        servicioThumb.src=window.URL.createObjectURL(file);
     }
 }
