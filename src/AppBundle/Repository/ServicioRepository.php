@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class ServicioRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function paginaServicios($pagina=1,$numServicios=3)
+    {
+        //Funcion que devuelve los servicios para una pagina con un numero de elementos
+        $query = $this->createQueryBuilder('t')
+            ->where('t.top = 1')
+            ->setFirstResult($numServicios*($pagina-1))
+            ->setMaxResults($numServicios)
+            ->getQuery();
+        return $query->getResult();
+    }
 }

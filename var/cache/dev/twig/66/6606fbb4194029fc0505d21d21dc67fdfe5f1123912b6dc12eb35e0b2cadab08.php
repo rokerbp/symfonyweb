@@ -97,15 +97,33 @@ class __TwigTemplate_588ec3153ae4da2316de121714140baf0d3b8bbe80af03d4865b2da330b
             <li class=\"nav-item\">
               <a class=\"nav-link\" href=\"#\">Contacto</a>
             </li>
+            <li class=\"nav-item\">
+              ";
+        // line 44
+        if ($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", array())) {
+            // line 45
+            echo "                <a class=\"nav-link\" href=\"";
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
+            echo "\">Logout</a>
+              ";
+        } else {
+            // line 47
+            echo "              <a class=\"nav-link\" href=\"";
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("login");
+            echo "\">Login</a>
+              ";
+        }
+        // line 49
+        echo "            </li>
           </ul>
         </div>
       </div>
     </nav>
     <!-- FIN menu navegacion -->
         ";
-        // line 48
+        // line 55
         $this->displayBlock('contenido', $context, $blocks);
-        // line 49
+        // line 56
         echo "        <!-- Footer -->
         <footer class=\"py-3 bg-dark\">
         <div class=\"container\">
@@ -115,17 +133,17 @@ class __TwigTemplate_588ec3153ae4da2316de121714140baf0d3b8bbe80af03d4865b2da330b
         </footer>
         <!-- Bootstrap core JavaScript -->
         <script src=\"";
-        // line 57
+        // line 64
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("vendor/jquery/jquery.min.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 58
+        // line 65
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("vendor/bootstrap/js/bootstrap.bundle.min.js"), "html", null, true);
         echo "\"></script>
         ";
-        // line 59
+        // line 66
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 60
+        // line 67
         echo "    </body>
 </html>
 ";
@@ -172,7 +190,7 @@ class __TwigTemplate_588ec3153ae4da2316de121714140baf0d3b8bbe80af03d4865b2da330b
 
     }
 
-    // line 48
+    // line 55
     public function block_contenido($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -189,7 +207,7 @@ class __TwigTemplate_588ec3153ae4da2316de121714140baf0d3b8bbe80af03d4865b2da330b
 
     }
 
-    // line 59
+    // line 66
     public function block_javascripts($context, array $blocks = array())
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -218,7 +236,7 @@ class __TwigTemplate_588ec3153ae4da2316de121714140baf0d3b8bbe80af03d4865b2da330b
 
     public function getDebugInfo()
     {
-        return array (  193 => 59,  176 => 48,  159 => 10,  141 => 5,  129 => 60,  127 => 59,  123 => 58,  119 => 57,  109 => 49,  107 => 48,  90 => 34,  86 => 33,  82 => 32,  72 => 25,  62 => 18,  51 => 11,  49 => 10,  45 => 9,  40 => 7,  35 => 5,  29 => 1,);
+        return array (  211 => 66,  194 => 55,  177 => 10,  159 => 5,  147 => 67,  145 => 66,  141 => 65,  137 => 64,  127 => 56,  125 => 55,  117 => 49,  111 => 47,  105 => 45,  103 => 44,  90 => 34,  86 => 33,  82 => 32,  72 => 25,  62 => 18,  51 => 11,  49 => 10,  45 => 9,  40 => 7,  35 => 5,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -272,6 +290,13 @@ class __TwigTemplate_588ec3153ae4da2316de121714140baf0d3b8bbe80af03d4865b2da330b
             </li>
             <li class=\"nav-item\">
               <a class=\"nav-link\" href=\"#\">Contacto</a>
+            </li>
+            <li class=\"nav-item\">
+              {% if app.user %}
+                <a class=\"nav-link\" href=\"{{ path('logout') }}\">Logout</a>
+              {% else %}
+              <a class=\"nav-link\" href=\"{{ path('login') }}\">Login</a>
+              {% endif %}
             </li>
           </ul>
         </div>

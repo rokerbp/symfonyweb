@@ -1,0 +1,29 @@
+{# Plantilla de la aplicación #}
+{% extends 'base.html.twig' %}
+{% form_theme form 'form/servicioForm.html.twig' %}
+{# Titulo #}
+{% block titulo %}
+Registro Usuario
+{% endblock %}
+{% block contenido %}
+{# Contenido #}
+<div class="container">
+    <h1 class="mt-4 mb-3">Registro
+        <small>Usuario</small>
+    </h1>
+    <!-- Intro Content -->
+    <div class="row">
+        <div class="col-lg-6">
+            {{ form_start(form)}}
+            {{ form_widget(form)}}
+            {{ form_end(form)}}
+        </div>
+        <div class="col-lg-6">
+            <h2>¿Para qué registrarse?</h2>
+            <p>Con el registro de usuario se podrá realizar la compra de nuestros distintos productos de una forma rápida y sencilla</p>
+            <p>Mediante la introducción del correo electrónico y la contraseña, podrás realizar una nueva compra de producto o anulación de la misma.</p>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+{% endblock %}

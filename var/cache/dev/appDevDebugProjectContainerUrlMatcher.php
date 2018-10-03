@@ -135,6 +135,51 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'categoria')), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::catAction',));
         }
 
+        // registro
+        if ('/registro' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'AppBundle\\Controller\\DefaultController::registroAction',  '_route' => 'registro',);
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_registro;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'registro'));
+            }
+
+            return $ret;
+        }
+        not_registro:
+
+        // login
+        if ('/login' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'AppBundle\\Controller\\DefaultController::loginAction',  '_route' => 'login',);
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_login;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'login'));
+            }
+
+            return $ret;
+        }
+        not_login:
+
+        // logout
+        if ('/logout' === $trimmedPathinfo) {
+            $ret = array('_route' => 'logout');
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_logout;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'logout'));
+            }
+
+            return $ret;
+        }
+        not_logout:
+
         // nuevoServicio
         if ('/gestionServicios/nuevoServicio' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\GestionServiciosController::nuevoServicioAction',  '_route' => 'nuevoServicio',);
