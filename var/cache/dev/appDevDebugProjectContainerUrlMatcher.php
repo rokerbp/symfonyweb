@@ -108,19 +108,9 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
         // homepage
-        if ('' === $trimmedPathinfo) {
-            $ret = array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
-            if ('/' === substr($pathinfo, -1)) {
-                // no-op
-            } elseif ('GET' !== $canonicalMethod) {
-                goto not_homepage;
-            } else {
-                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'homepage'));
-            }
-
-            return $ret;
+        if (preg_match('#^/(?P<pagina>[^/]++)?$#sD', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'homepage')), array (  'pagina' => 1,  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',));
         }
-        not_homepage:
 
         // nosotros
         if ('/nosotros' === $pathinfo) {

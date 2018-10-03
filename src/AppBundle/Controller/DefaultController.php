@@ -11,16 +11,23 @@ use AppBundle\Entity\Categoria;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{pagina}", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request,$pagina=1)
     {
+        $numServicios=3;
         //Capturar el repositorio de la tabla contra la BD
         $servicioRepository = $this->getDoctrine()->getRepository(Servicio::class);
-        $servicios = $servicioRepository->findByTop(1);
+        //$servicios = $servicioRepository->findByTop(1);
+        $query = $servicioRepository->createQueryBuilder('t')
+            ->where('t.top = 1')
+            ->setFirstResult($numServicios*($pagina-1))
+            ->setMaxResults($numServicios)
+            ->getQuery();
+        $servicios = $query->getResult();
         //var_dump($servicios);
         // replace this example code with whatever you need
-        return $this->render('frontal/index.html.twig',array('servicios'=>$servicios));
+        return $this->render('frontal/index.html.twig',array('servicios'=>$servicios,'paginaActual'=>$pagina));
     }
 
     /**

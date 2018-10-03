@@ -10,7 +10,9 @@ include_once $this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Com
 include_once $this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Form\\FormRegistryInterface.php';
 include_once $this->targetDirs[3].'\\vendor\\symfony\\symfony\\src\\Symfony\\Component\\Form\\FormRegistry.php';
 
-return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension(new \Symfony\Component\DependencyInjection\ServiceLocator(array('AppBundle\\Form\\ServicioType' => function () {
+return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry(array(0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension(new \Symfony\Component\DependencyInjection\ServiceLocator(array('AppBundle\\Form\\CategoriaType' => function () {
+    return ${($_ = isset($this->services['AppBundle\Form\CategoriaType']) ? $this->services['AppBundle\Form\CategoriaType'] : $this->services['AppBundle\Form\CategoriaType'] = new \AppBundle\Form\CategoriaType()) && false ?: '_'};
+}, 'AppBundle\\Form\\ServicioType' => function () {
     return ${($_ = isset($this->services['AppBundle\Form\ServicioType']) ? $this->services['AppBundle\Form\ServicioType'] : $this->services['AppBundle\Form\ServicioType'] = new \AppBundle\Form\ServicioType()) && false ?: '_'};
 }, 'Ivory\\CKEditorBundle\\Form\\Type\\CKEditorType' => function () {
     return ${($_ = isset($this->services['ivory_ck_editor.form.type']) ? $this->services['ivory_ck_editor.form.type'] : $this->load('getIvoryCkEditor_Form_TypeService.php')) && false ?: '_'};

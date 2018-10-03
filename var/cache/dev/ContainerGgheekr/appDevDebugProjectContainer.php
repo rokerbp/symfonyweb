@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerJfrike1;
+namespace ContainerGgheekr;
 
 
 use Symfony\Component\DependencyInjection\Argument\RewindableGenerator;
@@ -38,6 +38,7 @@ class appDevDebugProjectContainer extends Container
         $this->normalizedIds = array(
             'appbundle\\controller\\defaultcontroller' => 'AppBundle\\Controller\\DefaultController',
             'appbundle\\controller\\gestionservicioscontroller' => 'AppBundle\\Controller\\GestionServiciosController',
+            'appbundle\\form\\categoriatype' => 'AppBundle\\Form\\CategoriaType',
             'appbundle\\form\\serviciotype' => 'AppBundle\\Form\\ServicioType',
             'symfony\\bundle\\frameworkbundle\\controller\\redirectcontroller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\RedirectController',
             'symfony\\bundle\\frameworkbundle\\controller\\templatecontroller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController',
@@ -131,6 +132,7 @@ class appDevDebugProjectContainer extends Container
         $this->fileMap = array(
             'AppBundle\\Controller\\DefaultController' => 'getDefaultControllerService.php',
             'AppBundle\\Controller\\GestionServiciosController' => 'getGestionServiciosControllerService.php',
+            'AppBundle\\Form\\CategoriaType' => 'getCategoriaTypeService.php',
             'AppBundle\\Form\\ServicioType' => 'getServicioTypeService.php',
             'Symfony\\Bundle\\FrameworkBundle\\Controller\\RedirectController' => 'getRedirectControllerService.php',
             'Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController' => 'getTemplateControllerService.php',
@@ -345,6 +347,7 @@ class appDevDebugProjectContainer extends Container
             'swiftmailer.spool' => true,
             'swiftmailer.transport' => true,
             'swiftmailer.transport.real' => true,
+            'AppBundle\\Form\\CategoriaType' => true,
             'AppBundle\\Form\\ServicioType' => true,
             'annotation_reader' => true,
             'annotations.cache' => true,
@@ -1324,9 +1327,6 @@ class appDevDebugProjectContainer extends Container
             return ${($_ = isset($this->services['data_collector.request']) ? $this->services['data_collector.request'] : $this->services['data_collector.request'] = new \Symfony\Bundle\FrameworkBundle\DataCollector\RequestDataCollector()) && false ?: '_'};
         }, 1 => 'onKernelResponse'), 0);
         $instance->addListener('kernel.request', array(0 => function () {
-            return ${($_ = isset($this->services['debug.debug_handlers_listener']) ? $this->services['debug.debug_handlers_listener'] : $this->getDebug_DebugHandlersListenerService()) && false ?: '_'};
-        }, 1 => 'configure'), 2048);
-        $instance->addListener('console.command', array(0 => function () {
             return ${($_ = isset($this->services['debug.debug_handlers_listener']) ? $this->services['debug.debug_handlers_listener'] : $this->getDebug_DebugHandlersListenerService()) && false ?: '_'};
         }, 1 => 'configure'), 2048);
         $instance->addListener('kernel.request', array(0 => function () {
